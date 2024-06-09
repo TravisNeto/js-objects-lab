@@ -17,7 +17,8 @@ const game = {
       { name: "pokeball", quantity: 8 },
       { name: "rare candy", quantity: 99 },
     ],
-  }
+
+}  
   
 //Exercise 1
 //console.dir(pokemon, { maxArrayLength: null })
@@ -55,7 +56,7 @@ Exercise 5
 2. Consider different attributes like 'type' or 'HP' for your selection. Which array method will you use to add them?
 Solve Exercise 5 here:
 */
-game.party.push(pokemon[17], pokemon[20], pokemon[5]);
+game.party.push(pokemon[15], pokemon[20], pokemon[9]);
 console.log("exercise 5", game)
 
 
@@ -78,6 +79,7 @@ Solve Exercise 7 here:
 //how to loop over gyms array
 //if statement within the loop to check the gym difficulty - if its less than 3, if it is,
 //i need to access the completed property and assign it to "true"
+
 console.log('exercise 7')
 game.gyms.forEach((gym) =>{
   if (gym.difficulty < 3) {
@@ -98,12 +100,16 @@ Hint:
   - Pokemon 7: Squirtle evolves into Pokemon 8: Wartortle
   - Pokemon 25: Pikachu evolves into Pokemon 26: Raichu
 
+
 More Hints: The existing starter Pokemon will be *replaced* in your party with the Pokemon it evolved into. Remember that you're working with an array of objects - what array method is ideal for replacing one element with another? 
 Solve Exercise 8 here:
 */
 console.log('exercise 8')
-let party = ["Charmeleon", "Pidgeot", "Charizard", "Spearow"];
-console.log(party)
+
+game.party.forEach((p, i) => {
+  game.party.splice(i, 1, pokemon[p.number])
+
+})
 
 /*
 Exercise 9
@@ -161,9 +167,11 @@ Also, log the `game.items` array to confirm that the pokeball quantity is being 
 Solve Exercise 12 here:
 */
 
+// Exercise 12
+
 game.catchPokemon = (pokemonObj) => {
   game.party.push(pokemonObj)
-  game.party.forEach(catchPokemon)
+  game.items[1].quantity -=1
 }
 
 
@@ -183,7 +191,7 @@ game.gyms.forEach((gym) => {
     gym.completed = true
   }
 })
-console.log(game)
+console.log(game.gyms)
 
 
 /*
@@ -208,6 +216,11 @@ For example, if five gym objects have a value of `true` on their `completed` pro
 Solve Exercise 14 here:
 */
 
+game.gymStatus = (gymTally) => {
+  game.party.push(gymTally)
+
+}
+
 
 
 
@@ -222,10 +235,15 @@ This method should:
 
 Solve Exercise 15 here:
 */
+ 
+  game.partyCount = function() {
+      return game.party.length;
+  }
+console.log(game.partyCount())
 
-
-
-
+// game.partyCount = function partyCount() {
+//   return game.party.length;
+//}
 
 
 
@@ -236,13 +254,39 @@ Exercise 16
 Solve Exercise 16 here:
 */
 
-game.gyms.forEach((gym) => {
-  if (gym.difficulty < 8) {
-    gym.completed = true
+
+game.gymStatus=()=>{
+  const gymTally = { completed: 0, imcomplete: 0}
+
+game.gyms.forEach((gym, index)=>{
+  if(gym.completed === true) {
+    gymTally.complete ++
+  }else {
+    gymTally.incomplete ++
   }
 })
-console.log(game)
+console.log(gymtally)
+}
 
+game.gymStatus()
+
+game.updateStatus = (targetNum)=>{
+  game.gyms.forEach((gym, index)=>{
+    console.log(index, gym.completed)
+    if(gym.difficulty < 3){
+      gym.completed = true
+    }
+  })
+// }
+// game.updateStatus = (num)=>{
+//   game.gyms.forEach((gym, index)=>{
+//     console.log(index, gym.completed)
+//     if(gym.difficulty < num){
+
+//     }
+//   })
+}
+game.updateStatus(3)
 
 
 /*
@@ -253,10 +297,6 @@ Solve Exercise 17 here:
 
 console.log(game)
 
-
-
-
-                        ///// I NEED A LOT OF HELP //////
 
 
 
